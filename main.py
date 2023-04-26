@@ -41,15 +41,29 @@ class Job(Base):
     def __str__(self):
         return f"<Job name={self.name}, user = {self.user}"
 
-
+Base.metadata.drop_all(engine)
 
 
 Base.metadata.create_all(engine)
 local_session = Session(bind=engine)
 user1 = User(username="John", email="john@hua.gr")
 job1=Job(name="Programmer", user=user1)
+job2=Job(name="Analyst", user=user1)
 print(user1.jobs)
 for i in user1.jobs:
     print(i)
 local_session.add(user1)
 local_session.commit()
+
+# remove a job
+local_session.delete(job1)
+local_session.commit()
+
+#query
+
+users = local_session.query(User).all()
+for u in users:
+    print(u)
+    jobs = local_session.query(Job).filter(Job.user==u).all()
+    for j in jobs:
+        print(j)
