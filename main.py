@@ -38,6 +38,9 @@ class Job(Base):
     user_id : Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped["User"] = relationship(back_populates="jobs")
 
+    def __str__(self):
+        return f"<Job name={self.name}, user = {self.user}"
+
 
 
 
@@ -45,5 +48,8 @@ Base.metadata.create_all(engine)
 local_session = Session(bind=engine)
 user1 = User(username="John", email="john@hua.gr")
 job1=Job(name="Programmer", user=user1)
+print(user1.jobs)
+for i in user1.jobs:
+    print(i)
 local_session.add(user1)
 local_session.commit()
