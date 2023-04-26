@@ -1,6 +1,5 @@
 from __future__ import annotations
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, String, DateTime, Integer, create_engine, ForeignKey
+from sqlalchemy import String, DateTime, create_engine, ForeignKey
 from sqlalchemy.orm import sessionmaker, scoped_session, Mapped, mapped_column, relationship, DeclarativeBase
 from typing import List
 
@@ -41,9 +40,10 @@ class Job(Base):
     def __str__(self):
         return f"<Job name={self.name}, user = {self.user}"
 
+# remove all tables
 Base.metadata.drop_all(engine)
 
-
+# create all tables
 Base.metadata.create_all(engine)
 local_session = Session(bind=engine)
 user1 = User(username="John", email="john@hua.gr")
@@ -67,3 +67,6 @@ for u in users:
     jobs = local_session.query(Job).filter(Job.user==u).all()
     for j in jobs:
         print(j)
+
+# close the connection
+local_session.close()
