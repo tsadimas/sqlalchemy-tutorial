@@ -22,9 +22,9 @@ Session = scoped_session(sessionmaker())
 class User(Base):
     __tablename__ = 'users'
     id: Mapped[int] = mapped_column(primary_key=True)
-    username = Column(String(30), nullable=False, unique=True)
-    email = Column(String(30), unique=True, nullable=False)
-    date_created = Column(DateTime(), default=datetime.utcnow)
+    username: Mapped[str] = mapped_column(String(30), nullable=False, unique=True)
+    email: Mapped[str] = mapped_column(String(30), unique=True, nullable=False)
+    date_created: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now)
     jobs: Mapped[List["Job"]] = relationship(back_populates="user")
 
 
@@ -34,7 +34,7 @@ class User(Base):
 class Job(Base):
     __tablename__ = 'jobs'
     id: Mapped[int] = mapped_column(primary_key=True)
-    name = Column(String(100), nullable=False)
+    name: Mapped[str] = mapped_column(String(100), nullable=False)
     user_id : Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped["User"] = relationship(back_populates="jobs")
 

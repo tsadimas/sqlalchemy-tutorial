@@ -15,3 +15,4 @@ python main.py
 ## Links
 
 * [SQLite Viewer for VSCode](https://marketplace.visualstudio.com/items?itemName=qwtel.sqlite-viewer)
+* [SQLAlchemy basic Relationships](https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html)
