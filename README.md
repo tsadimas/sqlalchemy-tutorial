@@ -10,3 +10,8 @@ pip install -r requirements.txt
 
 ```bash
 python main.py
+```
+
+## Links
+
+* [SQLite Viewer for VSCode](https://marketplace.visualstudio.com/items?itemName=qwtel.sqlite-viewer)

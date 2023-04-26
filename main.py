@@ -1,6 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime, Integer, create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 from datetime import datetime
 import os
@@ -11,7 +11,7 @@ connection_string = "sqlite:///" + os.path.join(BASE_DIR, 'my.sqlite')
 
 Base = declarative_base()
 engine = create_engine(connection_string, echo=True)
-Session = sessionmaker()
+Session = scoped_session(sessionmaker())
 
 
 class User(Base):
