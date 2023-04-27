@@ -1,0 +1,19 @@
+<table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>City</th>
+               <th>Country</th>
+               <th>Actions</th>
+            </tr>
+         </thead>
+         
+         <tbody>
+            {% for user in users %}
+               <tr>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.id }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
