@@ -9,7 +9,8 @@ pip install -r requirements.txt
 * run
 
 ```bash
-python main.py
+cp .env.example .env
+export FLASK_APP=main.py FLASK_DEBUG=1 TEMPLATES_AUTO_RELOAD=1; flask run -h 0.0.0.0 -p 5000
 ```
 
 ## Links
