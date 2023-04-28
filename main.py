@@ -1,12 +1,16 @@
 from flask import Flask, render_template, redirect, request, flash, url_for
-from models import User
+from models import User, Job
 from config import SECRET_KEY
 
 from database import db_session, init_db
 
 
 app = Flask(__name__)
-app.secret_key = SECRET_KEY
+print(SECRET_KEY)
+app.config['SECRET_KEY'] = SECRET_KEY
+
+
+
 with app.app_context():
     init_db()
 
@@ -37,3 +41,21 @@ def newsuser():
     return render_template('new_user.html')
 
 
+@app.route('/job/<stid>', methods=['POST'])
+def savejob(stid):
+    if not request.form['name']:
+        flash('Please enter all the fields', 'error')
+    else:
+        user=User.query.get(stid)
+        print(user)
+        job = Job(name=request.form['name'], user=user)
+        db_session.add(job)
+        db_session.commit()
+        flash('Record was successfully added')
+    return redirect(url_for('show_all'))
+
+
+@app.route('/job/<stid>', methods=['GET'])
+def createjob(stid):
+    user = db_session.get(User, stid)
+    return render_template('new_job.html', user=user)
