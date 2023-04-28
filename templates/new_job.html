@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block main %}
-<h2> Adding job for user with username <b>{{user.username}} email {{user.city}}</b> </h2>
+<p> Adding job for user with username <b>{{user.username}} </b> email <b>{{user.email}}</b> </p>
 <form action="{{ request.path }}" method="post">
    <label for="name">Name</label><br>
    <input type="text" name="name" placeholder="Name" /><br>

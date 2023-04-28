@@ -41,12 +41,13 @@ def newsuser():
     return render_template('new_user.html')
 
 
-@app.route('/job/<stid>', methods=['POST'])
-def savejob(stid):
+
+@app.route('/job/<uid>', methods=['POST'])
+def savejob(uid):
     if not request.form['name']:
         flash('Please enter all the fields', 'error')
     else:
-        user=User.query.get(stid)
+        user=User.query.get(uid)
         print(user)
         job = Job(name=request.form['name'], user=user)
         db_session.add(job)
@@ -55,7 +56,7 @@ def savejob(stid):
     return redirect(url_for('show_all'))
 
 
-@app.route('/job/<stid>', methods=['GET'])
-def createjob(stid):
-    user = db_session.get(User, stid)
+@app.route('/job/<uid>', methods=['GET'])
+def createjob(uid):
+    user = db_session.get(User, uid)
     return render_template('new_job.html', user=user)
