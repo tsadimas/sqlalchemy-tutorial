@@ -1,9 +1,10 @@
 from sqlalchemy import create_engine
+
 from sqlalchemy.orm import scoped_session, sessionmaker
 from models import Base
 from config import connection_string
 
-
+print(connection_string)
 engine = create_engine(connection_string, echo=True)
 Session = scoped_session(sessionmaker())
 

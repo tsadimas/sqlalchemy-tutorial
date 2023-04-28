@@ -1,15 +1,14 @@
-from database import db_session, init_db
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, flash, url_for
 from models import User
-from forms import UserForm
 from config import SECRET_KEY
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = SECRET_KEY
+from database import db_session, init_db
 
+
+app = Flask(__name__)
+app.secret_key = SECRET_KEY
 with app.app_context():
     init_db()
-
 
 
 @app.teardown_appcontext
@@ -22,9 +21,19 @@ def show_all():
     users = User.query.all()
     return render_template('show_all.html', users=users)
 
-@app.route('/users', methods=['GET', 'POST'])
-def create_user():
-    form = UserForm()
-    # if form.validate_on_submit():
-    #     return redirect('/')
-    return render_template('new_user.html', form=form)
+
+@app.route('/user', methods=['GET', 'POST'])
+def newsuser():
+    if request.method == 'POST':
+        if not request.form['username'] or not request.form['email']:
+            flash('Please enter all the fields', 'error')
+        else:
+            user = User(
+                username=request.form['username'], email=request.form['email'])
+            db_session.add(user)
+            db_session.commit()
+            flash('Record was successfully added')
+            return redirect(url_for('show_all'))
+    return render_template('new_user.html')
+
+

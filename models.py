@@ -1,6 +1,6 @@
 from __future__ import annotations
-from sqlalchemy import String, DateTime, create_engine, ForeignKey
-from sqlalchemy.orm import sessionmaker, scoped_session, Mapped, mapped_column, relationship, DeclarativeBase
+from sqlalchemy import String, DateTime, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship, DeclarativeBase
 from typing import List
 from datetime import datetime
 

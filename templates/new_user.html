@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block main %}
 <form action="{{ request.path }}" method="post">
-   <label for="name">Name</label><br>
-   <input type="text" name="name" placeholder="Name" /><br>
-   <label for="city">City</label><br>
-   <input type="text" name="city" placeholder="city" /><br>
-   <label for="country">Country</label><br>
-   <input type="text" name="country" placeholder="Country" /><br>
+   <label for="name">Username</label><br>
+   <input type="text" name="username" placeholder="Username" /><br>
+   <label for="email">City</label><br>
+   <input type="email" name="email" placeholder="email" /><br>
    <input type="submit" value="Submit" />
 </form>
 {% endblock %}
