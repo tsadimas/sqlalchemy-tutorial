@@ -16,7 +16,8 @@
                   <td>{{ user.id }}</td>
                   <td>{{ user.username }}</td>
                   <td>{{ user.email }}</td>
-                  <td><a href = "{{ url_for('savejob', uid=user.id) }}">Add Job</a></td>
+                  <td><a href = "{{ url_for('savejob', uid=user.id) }}">Add Job</a>
+                     | <a href = "{{ url_for('list_jobs', uid=user.id) }}">List Jobs</a></td>
                </tr>
             {% endfor %}
          </tbody>

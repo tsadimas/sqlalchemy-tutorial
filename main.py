@@ -41,6 +41,11 @@ def newsuser():
     return render_template('new_user.html')
 
 
+@app.route('/user/<uid>', methods=['GET'])
+def list_jobs(uid):
+    user = User.query.get(uid)
+    return render_template('jobs.html', jobs=user.jobs, user=user)
+
 
 @app.route('/job/<uid>', methods=['POST'])
 def savejob(uid):
