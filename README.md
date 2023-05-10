@@ -12,6 +12,7 @@ pip install -r requirements.txt
 cp .env.example .env
 
 python -m flask --app main run
+gunicorn main:app --bind 0.0.0.0:5000
 ```
 
 ## Links
