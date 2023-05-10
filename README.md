@@ -15,6 +15,13 @@ python -m flask --app main run
 gunicorn main:app --bind 0.0.0.0:5000
 ```
 
+
+## docker
+```bash
+docker build -t myflask .
+
+docker run --env-file=.env --net=host -v $(pwd)/dbdata:/data/dbdata myflask
+```
 ## Links
 
 * [SQLite Viewer for VSCode](https://marketplace.visualstudio.com/items?itemName=qwtel.sqlite-viewer)
